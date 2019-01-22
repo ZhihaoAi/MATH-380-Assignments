@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      3203,        117]
-NotebookOptionsPosition[      2667,         92]
-NotebookOutlinePosition[      3021,        108]
-CellTagsIndexPosition[      2978,        105]
+NotebookDataLength[      4707,        170]
+NotebookOptionsPosition[      4060,        141]
+NotebookOutlinePosition[      4414,        157]
+CellTagsIndexPosition[      4371,        154]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -88,6 +88,55 @@ Cell[BoxData[
 
 Cell[BoxData["1.0165833333333334`"], "Output",
  CellChangeTimes->{3.7570957785021048`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"0", "==", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"0.199", "/", "12"}]}], ")"}], "24"], "*", "c"}], "+", 
+      FractionBox[
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"0.199", "/", "12"}]}], ")"}], "*", "105"}], "+", "b"}], 
+       RowBox[{"1", "-", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"0.199", "/", "12"}]}], ")"}]}]]}]}], ",", 
+    RowBox[{"12000", "\[Equal]", 
+     RowBox[{"c", "+", 
+      FractionBox[
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"0.199", "/", "12"}]}], ")"}], "*", "105"}], "+", "b"}], 
+       RowBox[{"1", "-", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"0.199", "/", "12"}]}], ")"}]}]]}]}]}], "}"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.757097043574399*^9, 3.7570970587920628`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"-", "716.9048197712393`"}]}], ",", 
+    RowBox[{"c", "\[Rule]", 
+     RowBox[{"-", "24793.78310178314`"}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.757097052723365*^9, 3.757097074289715*^9}}]
 }, Open  ]]
 },
 WindowSize->{552, 293},
@@ -118,6 +167,10 @@ Cell[2314, 77, 130, 2, 28, "Output"]
 Cell[CellGroupData[{
 Cell[2481, 84, 77, 2, 28, "Input"],
 Cell[2561, 88, 90, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2688, 94, 1052, 34, 92, "Input"],
+Cell[3743, 130, 301, 8, 86, "Output"]
 }, Open  ]]
 }
 ]
