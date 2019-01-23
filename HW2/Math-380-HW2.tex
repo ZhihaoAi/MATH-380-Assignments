@@ -1,0 +1,209 @@
+\documentclass[10pt]{report}
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	margin=1in,
+	footskip=0.25in
+}
+
+\usepackage{enumerate} % for enumerate counter
+\usepackage{subcaption} % for subfigures
+\usepackage{amsthm} % for QED
+\usepackage{mathtools} % for delimiter
+
+\usepackage{listings} % for code
+\lstset{ 
+	language=R,
+	basicstyle=\footnotesize\ttfamily,
+	numbers=none,
+	stepnumber=1,
+	numbersep=8pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=2,
+	captionpos=t,
+	breaklines=true,
+	breakatwhitespace=false
+} 
+
+\usepackage{float} % for figure [H]
+\usepackage{booktabs} % for tabular
+\usepackage{caption} % for \caption*
+\usepackage[export]{adjustbox} % for valign=t
+\usepackage{array} % for column type m
+\usepackage{verbatim}
+\usepackage{graphicx}
+%\graphicspath{ {imgs/} }
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{\hwAuther}
+\fancyhead[C]{\courseNo}
+\fancyhead[R]{\hwNo}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+%Cover
+\newcommand{\courseTitle}{Introduction to Mathematical Modeling}
+\newcommand{\courseNo}{Math 380}
+\newcommand{\hwAuther}{Zhihao Ai}
+
+\newcommand{\hwNo}{HW \#2}
+\newcommand{\hwDate}{Due on 02/06}
+
+\title{
+	\courseTitle\\
+	\hwNo\\
+	\hwDate
+}
+\author{\hwAuther}
+\date{}
+%
+
+%Custom
+%\everymath{\displaystyle}
+\setlength\parindent{0pt}
+
+%Custom commands
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcolumntype{N}{>$ c <$} 
+\newcolumntype{M}[1]{>{\centering\arraybackslash $}m{#1}<{$}}
+
+\newcommand{\abs}[1] {\left| #1 \right|}
+
+\DeclarePairedDelimiter\autoparen{(}{)}
+\newcommand{\pa}[1]{\autoparen*{#1}}
+
+\newcommand{\var} {\text{var}}
+
+\newcommand{\m}[1] {\mathbf{#1}}
+
+\begin{document}
+
+\maketitle
+
+
+
+\section*{Section 1.3}
+\begin{enumerate}
+	\item [1f.]
+	Find the solution to the difference equation:\\
+	$a_{n+1} = 0.1 a_n + 3.2, \quad a_0 = 1.3$
+	
+	\item [2e.]
+	Find an equilibrium value if one exitst. Classify the equilibrium values as stable or unstable.\\
+	$a_{n+1} = -1.2 a_n + 50$
+	
+	\item [3a.]
+	Build a numerical solution for the following \textit{initial value problem}. Plot your data to observe patterns in the solution. Is there an equilibrium solution? Is it stable or unstable?\\
+	$a_{n+1} = -1.2 a_n + 50, \quad a_0 = 1000$
+	
+	\item [6.]
+	You owe \$500 on a credit card that charges 1.5\% interest each month. You can pay \$50 each month with no new charges. What is the equilibrium value? What does the equilibrium value mean in terms of the credit card? Build a numerical solution. When will the account be paid off? How much is the last payment?
+	
+	\item [10.]
+	Find the equilibrium value the digoxin model. What is the significance of the equilibrium value? (Instead of Example 4, Section 1.2, use $a_{n+1} = 0.69 a_n + 0.1, \quad a_0=0.5$)
+\end{enumerate}
+
+\section*{Section 1.4}
+\begin{enumerate}
+	\item [2.]
+	Consider Example 3, Competitive Hunter Model--Spotted Owls and Hawks. Experiment with different values for the coefficients using the starting values given. Then try different starting values. What is the long-term behavior? Do your experimental results indicate that the model is sensitive
+	\begin{enumerate}[a.]
+		\item 
+		to the coefficients?
+		
+		\item 
+		to the starting values?
+	\end{enumerate} 
+
+	\item [4.]
+	Suppose the spotted owls' primary food source is a single prey: mice. An ecologist wishes to predict the population levels of spotted owls and mice in a wildlife sanctuary. Letting $M_n$ represent the mouse population after $n$ years and $O_n$ the predator owl population, the ecologist has suggested the model
+	\begin{align*}
+		M_{n+1} &= 1.2 M_n - 0.001 O_n M_n\\
+		O_{n+1} &= 0.7 O_n + 0.002 O_n M_n\\
+	\end{align*}
+	The ecologist wants to know whether the two species can coexist in the habitat and whether the outcome is sensitive to the starting populations.
+	\begin{enumerate}[a.]
+		\item 
+		Compare the signs of the coefficients of the preceding model with the signs of the coefficients of the owls--hawks model in Example 3. Explain the sign of each of the four coefficients 1.2, -0.001, 0.7 and 0.002 in terms of the predator--prey relationship being modeled.
+		
+		\item 
+		Test the initial populations in the foloowing table and predict the long-term outcome:
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{*{3}{c}} 
+				\toprule
+				 & Owls & Mice\\ \midrule
+				Case A & 150 & 200 \\
+				Case B & 150 & 300 \\
+				Case C & 100 & 200 \\
+				Case D & 10 & 20 \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		\item 
+		Now experiment with different values for the coefficients using the starting values given. Then try different starting values. What is the long-term behavior? Do your experimental results indicate that the model is sensitive to the coefficients? Is it sensitive to the starting values?
+	\end{enumerate}
+	
+	%[Also try but do not submit #3]
+\end{enumerate}
+
+\section*{Section 2.2}
+\begin{enumerate}
+	\item [6.]
+	Determine whether the following data support a proportionality argument for $y\propto z^{1/2}$. If so, estimate the slope.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{*{6}{N}} 
+			\toprule
+			y & 3.5 & 5 & 6 & 7 & 8 \\ \midrule
+			z & 3 & 6 & 9 & 12 & 15 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{enumerate}
+
+\section*{Section 2.3}
+\begin{enumerate}
+	\item [4.]
+	Assume that under certain conditions the heat loss of an object is proportional to the exposed surface area. Relate the heat loss of a cubic object with side length 6 in. to one with a side length of 12 in. Now, consider two irregularly shaped objects, such as two submarines. Relate the heat loss of a 70-ft submarine to that of a 7-ft scale model. Suppose you are interested in the amount of energy needed to maintain a constant internal temperature in the submarine. Relate the energy needed in the actual submarine to that required by the scaled model. Specify the assumptions you have made.
+	
+	\item [9.]
+	Consider the models $W\propto l^2 g$ and $W\propto g^3$. Interpret each of these models geometrically. Explain how these two models differ from Models (2.11) and (2.13), respectively. In what circumstances, if any, would the four models coincide? Which model do you think would do the best job of predicting $W$? Why? 
+	%(read Example 2 first, do NOT solve part a or b: you just have to explain the strengths and weaknesses of each model based on their underlying assumptions)
+	\begin{enumerate}[a.]
+		\item 
+		Let $A(x)$ denote a typical cross sectional area of a bass, $0\le x \le l$, where $l$ denotes the length of the fish. Use the mean value theorem from calculus to show that the volume $V$ of the fish is given by
+		\[
+		V = l \cdot \bar{A}
+		\]
+		where $\bar{A}$ is the average value of $A(x)$.
+		
+		\item 
+		Assuming that $\bar{A}$ is proportional to the square of the girth $g$ and that weight density for the bass is constant, establish that
+		\[
+		W\propto l g^2
+		\]
+	\end{enumerate}
+
+	\item [Pj.2.]
+	\textit{Heart rate of birds}--Warm-blooded animals use large quantities of energy to maintain body temperature because of heat loss through the body surface. In fact, biologists believe that the primary energy drain on a resting warm-blooded animal is maintenance of body temperature.
+	\begin{enumerate}[a.]
+		\item 
+		Construct a model relating blood flow through the heart to body weight. Assume that the amount of energy available is proportional to the blood flow through the lungs, which is the source of oxygen. Assuming the least amount of blood needed to circulate the amount of available energy will equal the amount of energy used to maintain the body temperature.
+		
+		\item 
+		% data @ bookmark
+		Construct a model that related heart rate to body weight. Discuss the assumptions of your model. Use the data to check your model.
+	\end{enumerate}
+\end{enumerate}
+\end{document}
+
