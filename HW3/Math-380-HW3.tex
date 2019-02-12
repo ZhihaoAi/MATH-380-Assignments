@@ -105,24 +105,40 @@
 		\item 
 		$P = c_1 t$
 		
+		Plotting $P$ against $t$, we have
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth]{s3_1/5a.png}
+		\end{figure}
+		$c_1$ is estimated to be $\frac{133-8}{21-7} = 8.93$.
+	
 		\item 
 		$P = a e^{bt}$
+		
+		Plotting $\ln{P}$ against $t$, we have
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}[b]{.4\linewidth}
+				\caption{$\ln{P}$ vs $t$}
+				\includegraphics[width=\linewidth]{s3_1/5b.png}
+			\end{subfigure}%%
+			\begin{subfigure}[b]{.4\linewidth}
+				\caption{Fitted model}
+				\includegraphics[width=\linewidth]{s3_1/5bo.png}
+			\end{subfigure}
+		\end{figure}
+		Since $\ln{P} = \ln{a} + bt$, $\ln{a}$ is estimated to be 2.7 so $a$ is about 14.88 and $b$ is estimated to be 0.1. This model is not a good fit when plotting $ a e^{bt}$ against $t$.
 	\end{enumerate}
 
 	\item [7.]
-	In 1601 the German astronomer Johannes Kepler became director of the Prague Observatory. Kepler had been helping Tycho Brahe in collecting 13 years of ovservations on the relative motion of the planet Mars. By 1609 Kepler had formulated his first two laws:
-	\begin{enumerate}[i.]
-		\item 
-		Each planet moves on an ellipse with the sun at one focus.
-		
-		\item 
-		For each planet, the line from the sun to the planet sweeps out equal areas in equal times.
-	\end{enumerate}
-	Kepler spent many years verifying these laws and formulating a third law, which relates the planets' orbital periods and mean distances from the sun.
+	In 1601 the German astronomer Johannes Kepler became director of the Prague Observatory. Kepler had been helping Tycho Brahe in collecting 13 years of ovservations on the relative motion of the planet Mars. By 1609 Kepler had formulated his first two laws. Kepler spent many years verifying these laws and formulating a third law, which relates the planets' orbital periods and mean distances from the sun.
 	\begin{enumerate}[a.]
 		\item 
 		Plot the period time $T$ versus the mean distance $r$ using the observational data.
-		% data table
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth]{s3_1/7a.png}
+		\end{figure}
 		
 		\item 
 		Assuming a relationship of the form
@@ -130,7 +146,11 @@
 		T = C r^a
 		\]
 		determine the parameters $C$ and $a$ by plotting $\ln{T}$ versus $\ln{r}$. Does the model seem reasonable? Try to formulate Kepler's third law.
-		%Comment: just roughly estimate (using your computational software if you wish) the values of the parameters from the plots; do NOT apply any theory from later sections. Use the appropriate log transformation 
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth]{s3_1/7b.png}
+		\end{figure}
+		Since $\ln{T} = \ln{C} + a \ln{r}$, $\ln{C}$ is estimated to be $-1.62$ so $C$ is about 0.2 and $a$ is estimated to be 1.5. Kepler's third law would be the planets' orbital periods are proportional to the mean distances from the sun to the power 1.5, or mathematically, $T = 0.2 r^{1.5}$.
 	\end{enumerate}
 \end{enumerate}
 
@@ -147,8 +167,32 @@
 			\bottomrule
 		\end{tabular}
 	\end{table}
-
-	\item 
+	If $r$ represents the largest absolute value of the residuals, the problem is to
+	\[
+	\text{Minimize } r
+	\]
+	subject to
+	\begin{align*}
+		r - (29.1a + b - 0.0493) &\ge 0\\
+		r + (29.1a + b - 0.0493) &\ge 0\\
+		r - (48.2 a + b - 0.0821) &\ge 0\\
+		r + (48.2 a + b - 0.0821) &\ge 0\\
+		r - (72.7 a + b - 0.123) &\ge 0\\
+		r + (72.7 a + b - 0.123) &\ge 0\\
+		r - (92.9 a + b - 0.154) &\ge 0\\
+		r + (92.9 a + b - 0.154) &\ge 0\\
+		r - (118 a + b - 0.197) &\ge 0\\
+		r + (118 a + b - 0.197) &\ge 0\\
+		r - (140 a + b - 0.234) &\ge 0\\
+		r + (140 a + b - 0.234) &\ge 0\\
+		r - (165 a + b - 0.274) &\ge 0\\
+		r + (165 a + b - 0.274) &\ge 0 \\
+		r - (199 a + b - 0.328) &\ge 0 \\
+		r + (199 a + b - 0.328) &\ge 0
+	\end{align*}
+	Using Mathematica, $r$ is minimized when $a=0.00164038$ and $b=0.00295615$.
+	
+	\item [3.]
 	For the following data, formulate the mathematical model that minimizes the largest deviation between the data and the model $y = c_1 x^2 + c_2 x + c_3$. Solve for the estimates of $c_1$, $c_2$ and $c_3$.
 	\begin{table}[H]
 		\centering
@@ -159,7 +203,24 @@
 			\bottomrule
 		\end{tabular}
 	\end{table}
-	%Comment: When solving the problems for Chebyshev Approximation Criterion, it is expected that your solution explicitly includes the linear program that has to be solved to apply CAC. After writing the linear program, you should solve it using any solver/ calculator.
+	If $r$ represents the largest absolute value of the residuals, the problem is to
+	\[
+	\text{Minimize } r
+	\]
+	subject to
+	\begin{align*}
+	r - (0.1^2 c_1 + 0.1 c_2 + c_3 - 0.06) &\ge 0\\
+	r + (0.1^2 c_1 + 0.1 c_2 + c_3 - 0.06) &\ge 0\\
+	r - (0.2^2 c_1 + 0.2 c_2 + c_3 - 0.12) &\ge 0\\
+	r + (0.2^2 c_1 + 0.2 c_2 + c_3 - 0.12) &\ge 0\\
+	r - (0.3^2 c_1 + 0.3 c_2 + c_3 - 0.36) &\ge 0\\
+	r + (0.3^2 c_1 + 0.3 c_2 + c_3 - 0.36) &\ge 0\\
+	r - (0.4^2 c_1 + 0.4 c_2 + c_3 - 0.65) &\ge 0\\
+	r + (0.4^2 c_1 + 0.4 c_2 + c_3 - 0.65) &\ge 0\\
+	r - (0.5^2 c_1 + 0.5 c_2 + c_3 - 0.95) &\ge 0\\
+	r + (0.5^2 c_1 + 0.5 c_2 + c_3 - 0.95) &\ge 0
+	\end{align*}
+	Using Mathematica, $r$ is minimized when $c_1=4$, $c_2=-0.0333$ and $c_3=-0.005$.
 \end{enumerate}
 
 \end{document}
