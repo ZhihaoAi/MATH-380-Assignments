@@ -1,0 +1,251 @@
+\documentclass[10pt]{report}
+
+\usepackage{geometry}
+\geometry{
+	letterpaper,
+	hmargin=0.5in,
+	vmargin=1in,
+	footskip=0.25in
+}
+
+\usepackage{enumerate} % for enumerate counter
+\usepackage{subcaption} % for subfigures
+\usepackage{amsthm} % for QED
+\usepackage{mathtools} % for delimiter
+
+\usepackage{listings} % for code
+\lstset{ 
+	language=R,
+	basicstyle=\footnotesize\ttfamily,
+	numbers=none,
+	stepnumber=1,
+	numbersep=8pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=2,
+	captionpos=t,
+	breaklines=true,
+	breakatwhitespace=false
+} 
+
+\usepackage{float} % for figure [H]
+\usepackage{booktabs} % for tabular
+\usepackage{caption} % for \caption*
+\usepackage[export]{adjustbox} % for valign=t
+\usepackage{array} % for column type m
+\usepackage{verbatim}
+\usepackage{graphicx}
+%\graphicspath{ {imgs/} }
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{\hwAuther}
+\fancyhead[C]{\courseNo}
+\fancyhead[R]{\hwNo}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+%Cover
+\newcommand{\courseTitle}{Introduction to Mathematical Modeling}
+\newcommand{\courseNo}{Math 380}
+\newcommand{\hwAuther}{Zhihao Ai}
+
+\newcommand{\hwNo}{HW \#4}
+\newcommand{\hwDate}{Due on 02/20}
+
+\title{
+	\courseTitle\\
+	\hwNo\\
+	\hwDate
+}
+\author{\hwAuther}
+\date{}
+%
+
+%Custom
+%\everymath{\displaystyle}
+\setlength\parindent{0pt}
+
+%Custom commands
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcolumntype{N}{>$ c <$} 
+\newcolumntype{M}[1]{>{\centering\arraybackslash $}m{#1}<{$}}
+
+\newcommand{\abs}[1] {\left| #1 \right|}
+
+\DeclarePairedDelimiter\autoparen{(}{)}
+\newcommand{\pa}[1]{\autoparen*{#1}}
+
+\newcommand{\var} {\text{var}}
+
+\newcommand{\m}[1] {\mathbf{#1}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Section 3.3}
+\begin{enumerate}
+	\item [4.]
+	Make an appropriate transformation to fit the model $P=ae^{bt}$ using Equation (3.4). Estimate $a$ and $b$.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{*{7}{c}} 
+			\toprule
+			$t$ & 7 & 14 & 21 & 28 & 35 & 42 \\ \midrule
+			$P$ & 8 & 41 & 133 & 250 & 280 & 297 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	Let $y=\ln{P}$, $ae^{bt} = \ln{a} + bt$, $A=\ln{a}$, we have
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{*{7}{c}} 
+			\toprule
+			$t$ & 7 & 14 & 21 & 28 & 35 & 42 \\ \midrule
+			$y$ & 2.08 & 3.71 & 4.89 & 5.52 & 5.63 & 5.69 \\
+			\midrule
+			$t^2$ & 49 & 196 & 441 & 784 & 1225 & 1764 \\
+			\midrule
+			$t y$ & 14.56 & 51.99 & 102.70 & 154.60 & 197.22 & 239.14 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	Using Equation (3.4), we have
+	\begin{align*}
+		4459b + 147A &= 760.2\\
+		147A + 6b &= 27.53
+	\end{align*}
+	Solving the equations, $A=2.14$, $b=0.1$, so $a = e^A = 8.5$.
+
+	\item [8.]
+	Fit the data with the models given, using least squares.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{*{10}{c}} 
+			\toprule
+			$x(\times 10^{-3})$ & 5 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 \\ \midrule
+			$y(\times 10^{-5})$ & 0 & 19 & 57 & 94 & 134 & 173 & 216 & 256 & 297 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	\begin{enumerate}[a.]
+		\item 
+		$y=ax$
+		\begin{align*}
+			a \sum_{i=1}^{9} x_i^2 &= \sum_{i=1}^{9} x_i y_i\\
+			0.0204a &= 0.000728\\
+			a &= 0.0356
+		\end{align*}
+		So, $y=0.0356x$.
+		
+		\item 
+		$y=b+ax$
+		
+		Solving
+		\begin{align*}
+			0.020425a + 0.365b &= 0.000728\\
+			0.365a + 9b &= 0.01246
+		\end{align*}
+		we have $a=0.0396$ and $b=-0.000222$. So, $y=0.0396x - 0.000222$.
+	\end{enumerate}
+\end{enumerate}
+
+\section*{Section 3.4}
+\begin{enumerate}
+	\item [7.]
+	\begin{enumerate}
+		\item [a.]
+		In the following data, $W$ represents the weight of a fish and $l$ represents its length. Fit the model $W=kl^3$ to the data using the least-squares criterion.
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{*{9}{c}} 
+				\toprule
+				Length, $l$ (in.) & 14.5 & 12.5 & 17.25 & 14.5 & 12.625 & 17.75 & 14.125 & 12.625 \\ \midrule
+				Weight, $W$ (oz) & 27 & 17 & 41 & 26 & 17 & 49 & 23 & 16  \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		Sum of square error
+		\[
+		S = \sum_{i=1}^{8} (W_i - kl_i^3)^2
+		\]
+		Setting the derivative to 0, we have
+		\begin{align*}
+			\frac{\partial S}{\partial k} &= 0\\
+			-2 \sum_{i=1}^{8} (W_i - kl_i^3)l_i^3 &= 0\\
+			k &= \frac{\sum_{i=1}^{8} W_i l_i^3}{\sum_{i=1}^{8} l_i^6}\\
+			k &= 0.00844
+		\end{align*}
+		Thus, $W=0.00844l^3$.
+		
+		\item [b.]
+		In the following data, $g$ represents the girth of a fish. Fit the model $W=klg^2$ to the data using the least-squares criterion.
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{*{9}{c}} 
+				\toprule
+				Length, $l$ (in.) & 14.5 & 12.5 & 17.25 & 14.5 & 12.625 & 17.75 & 14.125 & 12.625 \\ \midrule
+				Girth, $g$ (in.) & 9.75 & 8.375 & 11.0 & 9.75 & 8.5 & 12.5 & 9.0 & 8.5  \\ \midrule
+				Weight, $W$ (oz) & 27 & 17 & 41 & 26 & 17 & 49 & 23 & 16  \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		Sum of square error
+		\[
+		S = \sum_{i=1}^{8} (W_i - k l_i g_i^2)^2
+		\]
+		Setting the derivative to 0, we have
+		\begin{align*}
+			\frac{\partial S}{\partial k} &= 0\\
+			-2 \sum_{i=1}^{8} (W_i - k l_i g_i^2) l_i g_i^2 &= 0\\
+			k &= \frac{\sum_{i=1}^{8} W_i l_i g_i^2}{\sum_{i=1}^{8} l_i^2 g_i^4}\\
+			k &= 0.0187
+		\end{align*}
+		Thus, $W=0.0187lg^2$.
+	\end{enumerate}
+	
+	\item [8.]
+	Use the data presented in Problem 7b to fit the models $W=cg^3$ and $W=kgl^2$. Interpret these models. Compute appropriate indicators and determine which model is best. Explain.
+	
+	To fit $W=cg^3$, setting the derivative to 0, we have
+	\begin{align*}
+		\frac{\partial S}{\partial c} &= 0\\
+		-2 \sum_{i=1}^{8} (W_i - c g_i^3) g_i^3 &= 0\\
+		c &= \frac{\sum_{i=1}^{8} W_i g_i^3}{\sum_{i=1}^{8} g_i^6}\\
+		c &= 0.0276
+	\end{align*}
+	Thus, $W=0.0276g^3$.
+	
+	To fit $W=kgl^2$, setting the derivative to 0, we have
+	\begin{align*}
+		\frac{\partial S}{\partial k} &= 0\\
+		-2 \sum_{i=1}^{8} (W_i - k l_i^2 g_i) l_i^2 g_i &= 0\\
+		k &= \frac{\sum_{i=1}^{8} W_i l_i^2 g_i}{\sum_{i=1}^{8} l_i^4 g_i^2}\\
+		k &= 0.0126
+	\end{align*}
+	Thus, $W=0.0126gl^2$.
+	
+	The summary of the results for all 4 models is shown below:
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{*{3}{c}} 
+			\toprule
+			Model & $\sum [W_i - f(l_i, g_i)]^2$ & $\max \abs{W_i - f(l_i, g_i)} $ \\ \midrule
+			$W=0.00844l^3$ & 12.1693 & 2.32212  \\ \midrule
+			$W=0.0187lg^2$ & 17.6832 & 2.86328  \\ \midrule
+			$W=0.0276g^3$ & 54.2605 & 4.90625  \\ \midrule
+			$W=0.0126gl^2$ & 3.39977 & 1.17079  \\ 
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	Using either least square or Chebyshev criterion, $W=0.0126gl^2$ is the best model.
+\end{enumerate}
+
+\end{document}
+
