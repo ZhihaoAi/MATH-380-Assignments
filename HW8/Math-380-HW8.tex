@@ -1,0 +1,276 @@
+\documentclass[10pt]{report}
+
+\usepackage{geometry}
+\geometry{
+	letterpaper,
+	hmargin=0.7in,
+	vmargin=1in,
+	footskip=0.25in
+}
+
+\usepackage{enumerate} % for enumerate counter
+\usepackage{subcaption} % for subfigures
+\usepackage{amsthm} % for QED
+\usepackage{mathtools} % for delimiter
+
+\usepackage{listings} % for code
+\lstset{ 
+	language=R,
+	basicstyle=\footnotesize\ttfamily,
+	numbers=none,
+	stepnumber=1,
+	numbersep=8pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=2,
+	captionpos=t,
+	breaklines=true,
+	breakatwhitespace=false
+} 
+
+\usepackage{float} % for figure [H]
+\usepackage{booktabs} % for tabular
+\usepackage{caption} % for \caption*
+\usepackage[export]{adjustbox} % for valign=t
+\usepackage{array} % for column type m
+\usepackage{verbatim}
+\usepackage{graphicx}
+%\graphicspath{ {imgs/} }
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{\hwAuther}
+\fancyhead[C]{\courseNo}
+\fancyhead[R]{\hwNo}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+%Cover
+\newcommand{\courseTitle}{Introduction to Mathematical Modeling}
+\newcommand{\courseNo}{Math 380}
+\newcommand{\hwAuther}{Zhihao Ai}
+
+\newcommand{\hwNo}{HW \#8}
+\newcommand{\hwDate}{Due on 04/03}
+
+\title{
+	\courseTitle\\
+	\hwNo\\
+	\hwDate
+}
+\author{\hwAuther}
+\date{}
+%
+
+%Custom
+%\everymath{\displaystyle}
+\setlength\parindent{0pt}
+
+%Custom commands
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcolumntype{N}{>$ c <$} 
+\newcolumntype{M}[1]{>{\centering\arraybackslash $}m{#1}<{$}}
+
+\newcommand{\abs}[1] {\left| #1 \right|}
+
+\DeclarePairedDelimiter\autoparen{(}{)}
+\newcommand{\pa}[1]{\autoparen*{#1}}
+
+\newcommand{\var} {\text{var}}
+
+\newcommand{\m}[1] {\mathbf{#1}}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item 
+	Input: $n=1,000,000$ random points to be generated\\
+	Output: Estimate of $\pi$
+	\begin{enumerate}[i.]
+		\item
+		Define the bounding box as $S: 0 \le x \le 1$ and $0 \le y \le 1$
+		
+		\item
+		Initialize $c=0$
+		
+		\item
+		For $i=1, \dots, n$, do steps 3a-b
+		\begin{enumerate}[a.]
+			\item 
+			Generate random points $x_i$, $y_i$, where $0 \le x_i \le 1$ and $0 \le y_i \le 1$
+			
+			\item 
+			If $x_i^2 + y_i^2 \le 1$, then $c=c+1$
+		\end{enumerate}
+	
+		\item
+		$\hat{\pi} = 4c/n$
+	\end{enumerate}
+	Running the algorithm, we have $\hat{\pi} = 3.138052$.
+	
+	\item 
+	Input: $n=1,000,000$ random points to be generated\\
+	Output: Area trapped between $f_1(x) = x^2$ and $f_2(x) = 6-x$ and the $x$- and $y$-axes
+	\begin{enumerate}[i.]
+		\item
+		Define the bounding region as $S: 0 \le x \le 6$ and $0 \le y \le 6$
+		
+		\item
+		Initialize $c=0$
+		
+		\item
+		For $i=1, \dots, n$, do steps 3a-b
+		\begin{enumerate}[a.]
+			\item 
+			Generate random points $x_i$, $y_i$, where $0 \le x_i \le 6$ and $0 \le y_i \le 6$
+			
+			\item 
+			If $y_i \le \min\{f_1(x_i), f_2(x_i)\}$, then $c=c+1$
+		\end{enumerate}
+		
+		\item
+		Area $ = 36 c/n$
+	\end{enumerate}
+	Running the algorithm, we have the estimated area $ = 10.656504$.
+	
+	\item
+	Input: $n=1,000,000$ random points to be generated\\
+	Output: Volume trapped between $f_1(x, y) = 8 - x^2 - y^2$ and $f_2(x, y) = x^2 + 3y^2$
+	\begin{enumerate}[i.]
+		\item
+		Since the maximum value of $z=8-x^2-y^2$ is 8 and the minimum value of $z = x^2 + 3y^2$ is 0, and the two paraboloids intersect on $x^2 + 2y^2 = 4$, we can define the bounding volume as $S: -2 \le x \le 2$, $-2 \le y \le 2$ and $0 \le z \le 8$
+		
+		\item
+		Initialize $c=0$
+		
+		\item
+		For $i=1, \dots, n$, do steps 3a-b
+		\begin{enumerate}[a.]
+			\item 
+			Generate random points $x_i$, $y_i$, $z_i$, where $-2 \le x \le 2$, $-2 \le y \le 2$ and $0 \le y_i \le 8$
+			
+			\item 
+			If $z_i \le \min\{f_1(x_i, y_i), f_2(x_i, y_i)\}$, then $c=c+1$
+		\end{enumerate}
+		
+		\item
+		Estimated volume $ =  4\cdot 4\cdot 8\cdot c/n$
+	\end{enumerate}
+	Running the algorithm, we have the estimated volume $ = 35.505664$. The true value is $ \int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{4-2y^2}}^{\sqrt{4-2y^2}} (8 - x^2 - y^2) - (x^2 + 3y^2) dx dy = 35.5431$. They are fairly close.
+	
+	\item 
+	Using the middle-square method, we have
+	\begin{table}[H]
+		\centering
+		\begin{minipage}{.3\linewidth}
+			\centering
+			\begin{tabular}{*{3}{c}} 
+				\toprule
+				$i$ & $x_i$ & $x_i^2$ \\ \midrule
+				0 & 653217 & 426692449089 \\ \midrule
+				1 & 692449 & 479485617601 \\ \midrule
+				2 & 485617 & 235823870689 \\ \midrule
+				3 & 823870 & 678761776900 \\ \midrule
+				4 & 761776 & 580302674176 \\ \midrule
+				5 & 302674 & 91611550276 \\ \midrule
+				6 & 611550 & 373993402500 \\
+				\bottomrule
+			\end{tabular}
+		\end{minipage}
+		\hspace{-2ex}
+		\begin{minipage}{.3\linewidth}
+			\centering
+			\begin{tabular}{*{3}{c}} 
+				\toprule
+				$i$ & $x_i$ & $x_i^2$ \\ \midrule
+				7 & 993402 & 986847533604 \\ \midrule
+				8 & 847533 & 718312186089 \\ \midrule
+				9 & 312186 & 97460098596 \\ \midrule
+				10 & 460098 & 211690169604 \\ \midrule
+				11 & 690169 & 476333248561 \\ \midrule
+				12 & 333248 & 111054229504 \\ \midrule
+				13 & 54229 & 2940784441 \\ 
+				\bottomrule
+			\end{tabular}
+		\end{minipage}
+		\hspace{-2ex}
+		\begin{minipage}{.3\linewidth}
+			\centering
+			\begin{tabular}{*{3}{c}} 
+				\toprule
+				$i$ & $x_i$ & $x_i^2$ \\ \midrule
+				14 & 940784 & 885074534656 \\ \midrule
+				15 & 74534 & 5555317156 \\ \midrule
+				16 & 555317 & 308376970489 \\ \midrule
+				17 & 376970 & 142106380900 \\ \midrule
+				18 & 106380 & 11316704400 \\ \midrule
+				19 & 316704 & 100301423616 \\ \midrule
+				20 & 301423 & 90855824929 \\ 
+				\bottomrule
+			\end{tabular}
+		\end{minipage}
+	\end{table}
+	
+	\item 
+	Let $x_0=2$ then we have
+	\begin{table}[H]
+		\centering
+		\begin{minipage}{.3\linewidth}
+			\centering
+			\begin{tabular}{*{3}{c}} 
+				\toprule
+				$i$ & $x_i$ & $(5 \cdot x_i + 3) \mod 16$ \\ \midrule
+				0 & 2 & 13 \\ \midrule
+				1 & 13 & 4 \\ \midrule
+				2 & 4 & 7 \\ \midrule
+				3 & 7 & 6 \\ \midrule
+				4 & 6 & 1 \\ \midrule
+				5 & 1 & 8 \\ \midrule
+				6 & 8 & 11 \\ 
+				\bottomrule
+			\end{tabular}
+		\end{minipage}
+		\hspace{-2ex}
+		\begin{minipage}{.3\linewidth}
+			\centering
+			\begin{tabular}{*{3}{c}} 
+				\toprule
+				$i$ & $x_i$ & $(5 \cdot x_i + 3) \mod 16$ \\ \midrule
+				7 & 11 & 10 \\ \midrule
+				8 & 10 & 5 \\ \midrule
+				9 & 5 & 12 \\ \midrule
+				10 & 12 & 15 \\ \midrule
+				11 & 15 & 14 \\ \midrule
+				12 & 14 & 9 \\ \midrule
+				13 & 9 & 0 \\ 
+				\bottomrule
+			\end{tabular}
+		\end{minipage}
+		\hspace{-2ex}
+		\begin{minipage}{.3\linewidth}
+			\centering
+			\begin{tabular}{*{3}{c}} 
+				\toprule
+				$i$ & $x_i$ & $(5 \cdot x_i + 3) \mod 16$ \\ \midrule
+				14 & 0 & 3 \\ \midrule
+				15 & 3 & 2 \\ \midrule
+				16 & 2 & 13 \\ \midrule
+				17 & 13 & 4 \\ \midrule
+				18 & 4 & 7 \\ \midrule
+				19 & 7 & 6 \\ \midrule
+				20 & 6 & 1 \\ 
+				\bottomrule
+			\end{tabular}
+		\end{minipage}
+	\end{table}
+\end{enumerate}
+
+\end{document}
+
